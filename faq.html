@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VOROVE — FAQ & Support</title>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;900&family=Manrope:wght@200;500;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --dark: #050505;
+      --v-prime: #6d28d9;
+      --v-dim: rgba(109, 40, 217, 0.2);
+      --glass: rgba(255, 255, 255, 0.02);
+      --border: rgba(255, 255, 255, 0.05);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* Защита от копирования текста */
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: var(--dark);
+      color: #fff;
+      line-height: 1.6;
+      background-image: radial-gradient(circle at 90% 10%, rgba(109, 40, 217, 0.05) 0%, transparent 40%);
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    header {
+      position: fixed; top: 30px; left: 50%; transform: translateX(-50%);
+      width: 90%; max-width: 1100px; padding: 12px 35px;
+      background: rgba(10, 10, 10, 0.7); backdrop-filter: blur(20px);
+      border: 1px solid var(--border); border-radius: 100px;
+      display: flex; justify-content: space-between; align-items: center; z-index: 1000;
+    }
+
+    .logo { font-family: 'Unbounded'; font-weight: 900; font-size: 1.1rem; text-transform: uppercase; color: #fff; text-decoration: none; }
+    .logo span { color: var(--v-prime); }
+    nav a { color: rgba(255, 255, 255, 0.5); text-decoration: none; font-size: 0.75rem; font-weight: 600; margin-left: 25px; transition: 0.3s; text-transform: uppercase; }
+    nav a:hover, nav a.active { color: #fff; }
+
+    .container { max-width: 800px; margin: 150px auto 100px; padding: 0 5%; }
+
+    .hero-tag { border: 1px solid rgba(255,255,255,0.1); padding: 6px 18px; border-radius: 100px; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px; color: rgba(255,255,255,0.4); display: inline-block; }
+    h1 { font-family: 'Unbounded'; font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 50px; text-align: center; }
+
+    /* FAQ Style */
+    .faq-item { background: var(--glass); border: 1px solid var(--border); border-radius: 20px; margin-bottom: 15px; overflow: hidden; transition: 0.3s; }
+    .faq-item:hover { border-color: rgba(109, 40, 217, 0.3); }
+
+    .faq-question { padding: 25px 30px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: 'Unbounded'; font-size: 0.85rem; font-weight: 400; }
+    .faq-question::after { content: '+'; color: var(--v-prime); font-size: 1.2rem; transition: 0.3s; }
+
+    .faq-answer { max-height: 0; overflow: hidden; transition: all 0.4s cubic-bezier(0, 1, 0, 1); padding: 0 30px; color: rgba(255,255,255,0.5); font-size: 0.9rem; }
+
+    .faq-item.active { border-color: var(--v-prime); background: rgba(109, 40, 217, 0.02); }
+    .faq-item.active .faq-answer { max-height: 1000px; padding-bottom: 25px; }
+    .faq-item.active .faq-question::after { transform: rotate(45deg); color: #fff; }
+
+    .support-box { margin-top: 60px; text-align: center; padding: 40px; border-radius: 30px; background: linear-gradient(145deg, rgba(109, 40, 217, 0.05), transparent); border: 1px dashed var(--v-dim); }
+    .support-link { color: var(--v-prime); text-decoration: none; font-weight: 800; border-bottom: 1px solid; transition: 0.3s; }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">VOR<span>OVE</span></a>
+  <nav>
+    <a href="catalog.html">Каталог</a>
+    <a href="donate.html">Донат</a>
+    <a href="faq.html" class="active">FAQ</a>
+  </nav>
+</header>
+
+<div class="container">
+  <div style="text-align: center;">
+    <div class="hero-tag">System Info</div>
+    <h1>БАЗА ЗНАНИЙ<span>.</span></h1>
+  </div>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-question">Откуда берутся паки в архиве?</div>
+      <div class="faq-answer">
+        Мы собираем редкие, приватные или платные ресурсы от топовых авторов комьюнити (например, FlugerNew или bro9i). Наша цель — дать возможность игрокам протестировать платный контент - бесплатно.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Как работает поиск по каталогу?</div>
+      <div class="faq-answer">
+        Наш поиск "умный". Вы можете вводить не только название ресурспака, но и никнейм автора. Например, введите "bro9i", и система мгновенно покажет все его работы.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">У автора в соцсетях пак платный, а тут — нет. Почему?</div>
+      <div class="faq-answer">
+        Это и есть суть проекта VOROVE. Мы находим и публикуем ассеты из закрытых источников. Однако мы всегда указываем настоящего автора в карточке, чтобы вы знали, чья это работа.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Почему я не могу скопировать текст на сайте?</div>
+      <div class="faq-answer">
+        Мы защищаем уникальные описания и структуру нашего архива от автоматического копирования ботами. Это помогает нам сохранять уникальность проекта в поисковых системах.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Могу ли я стать автором в вашем каталоге?</div>
+      <div class="faq-answer">
+        Да! Если ты создаешь качественные паки и хочешь, чтобы о них узнали тысячи игроков, напиши нам в Discord. Мы создадим для тебя персональную карточку с твоим аватаром и уникальным цветом.
+      </div>
+    </div>
+  </div>
+
+  <div class="support-box">
+    <h3 style="font-family: 'Unbounded'; margin-bottom: 10px;">Нужен личный контакт?</h3>
+    <p style="font-size: 0.85rem; color: rgba(255,255,255,0.4); margin-bottom: 20px;">По вопросам сотрудничества или удаления контента пишите в техподдержку.</p>
+    <a href="#" class="support-link">ОТКРЫТЬ ТИКЕТ В DISCORD</a>
+  </div>
+</div>
+
+<script>
+  // Аккордеон
+  document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+      const item = question.parentElement;
+      item.classList.toggle('active');
+    });
+  });
+
+  // Защита от копирования и ПКМ
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  document.addEventListener('keydown', e => {
+    if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 85 || e.keyCode === 83)) return false;
+    if (e.keyCode === 123) return false;
+  });
+</script>
+
+</body>
+</html>

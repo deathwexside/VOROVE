@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VOROVE — Support</title>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;900&family=Manrope:wght@200;500;800&display=swap" rel="stylesheet" />
+  <link href="style.css" rel="stylesheet" />
+  <style>
+    :root {
+      --dark: #050505;
+      --v-prime: #6d28d9;
+      --v-dim: rgba(109, 40, 217, 0.2);
+      --glass: rgba(255, 255, 255, 0.02);
+      --border: rgba(255, 255, 255, 0.05);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: var(--dark);
+      color: #fff;
+      min-height: 100vh;
+      background-image: radial-gradient(circle at 50% 50%, rgba(109, 40, 217, 0.08) 0%, transparent 70%);
+      overflow-x: hidden;
+    }
+
+    header {
+      position: fixed; top: 30px; left: 50%; transform: translateX(-50%);
+      width: 90%; max-width: 1100px; padding: 12px 35px;
+      background: rgba(10, 10, 10, 0.7); backdrop-filter: blur(20px);
+      border: 1px solid var(--border); border-radius: 100px;
+      display: flex; justify-content: space-between; align-items: center; z-index: 1000;
+    }
+
+    .logo { font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 1.1rem; text-transform: uppercase; color: #fff; text-decoration: none; }
+    .logo span { color: var(--v-prime); }
+    nav a { color: rgba(255, 255, 255, 0.5); text-decoration: none; font-size: 0.75rem; font-weight: 600; margin-left: 25px; text-transform: uppercase; transition: 0.3s; }
+    nav a:hover, nav a.active { color: #fff; }
+
+    .container { max-width: 1000px; margin: 150px auto 100px; padding: 0 5%; text-align: center; }
+
+    .svg-icon {
+      width: 80px; height: 80px; margin: 0 auto 30px;
+      animation: float 4s ease-in-out infinite;
+      filter: drop-shadow(0 0 15px var(--v-prime));
+    }
+
+    h1 { font-family: 'Unbounded'; font-size: clamp(2rem, 6vw, 3rem); margin-bottom: 20px; }
+    .desc { color: rgba(255,255,255,0.4); max-width: 600px; margin: 0 auto 50px; font-size: 0.95rem; line-height: 1.6; }
+
+    /* Исправленная сетка */
+    .donate-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+      gap: 25px; 
+      margin-top: 30px;
+      align-items: start;
+    }
+
+    .donate-item {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      margin-bottom: 15px;
+      text-align: left;
+      transition: 0.3s;
+      overflow: hidden;
+    }
+    .donate-item:hover { border-color: rgba(109, 40, 217, 0.4); background: rgba(255,255,255,0.03); }
+
+    .donate-question {
+      padding: 20px 25px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-family: 'Unbounded';
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+    .donate-question svg { width: 24px; height: 16px; border-radius: 2px; flex-shrink: 0; }
+
+    .donate-answer {
+      max-height: 0;
+      padding: 0 25px;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.8rem;
+      line-height: 1.5;
+      transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+    }
+
+    .donate-item.active .donate-answer {
+      max-height: 300px;
+      padding-bottom: 25px;
+    }
+
+    .donate-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 30px;
+      text-align: left;
+      transition: 0.4s;
+    }
+    .donate-card:hover { border-color: var(--v-prime); background: rgba(109, 40, 217, 0.04); }
+
+    .btn {
+      display: block; width: 100%; padding: 14px; background: var(--v-prime);
+      color: #fff; text-decoration: none; border-radius: 12px;
+      font-family: 'Unbounded'; font-size: 0.65rem; font-weight: 900;
+      border: none; cursor: pointer; transition: 0.3s; text-align: center;
+      margin-top: 15px;
+    }
+    .btn:hover { box-shadow: 0 0 20px var(--v-dim); transform: translateY(-2px); }
+	/* Отключаем возможность тянуть любые картинки и ссылки */
+img, a {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">VOR<span>OVE</span></a>
+  <nav>
+    <a href="catalog.html">Каталог</a>
+    <a href="donate.html" class="active">Донат</a>
+    <a href="faq.html">FAQ</a>
+  </nav>
+</header>
+
+<div class="container">
+  <div class="svg-icon">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2L4 12L12 22L20 12L12 2Z" stroke="var(--v-prime)" stroke-width="1" fill="rgba(109, 40, 217, 0.2)">
+        <animate attributeName="stroke-dasharray" values="0,50;50,0" dur="3s" repeatCount="indefinite" />
+      </path>
+      <path d="M12 6L8 12L12 18L16 12L12 6Z" stroke="white" stroke-width="0.5" opacity="0.5">
+        <animate transform="rotate" attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="10s" repeatCount="indefinite" />
+      </path>
+      <circle cx="12" cy="2" r="1" fill="var(--v-prime)" />
+      <circle cx="12" cy="22" r="1" fill="var(--v-prime)" />
+    </svg>
+  </div>
+
+  <h1>Поддержка<span>.</span></h1>
+  <p class="desc">
+    Мы уничтожаем ценники на приватные ресурсы. Твой вклад — это топливо для новых сливов и гарантия того, что архив будет доступен 24/7.
+  </p>
+
+  <div class="donate-grid">
+    <div class="donate-column">
+      
+      <div class="donate-item" onclick="this.classList.toggle('active')">
+        <div class="donate-question">
+          <svg viewBox="0 0 9 6">
+            <rect width="9" height="6" fill="#fff"/>
+            <rect width="9" height="4" y="2" fill="#0039a6"/>
+            <rect width="9" height="2" y="4" fill="#d52b1e"/>
+          </svg>
+          Оплата RUB (Россия)
+        </div>
+        <div class="donate-answer">
+          <p style="margin-bottom: 12px;">Поддержка через DonationAlerts. Быстро и безопасно.</p>
+          <a href="https://www.donationalerts.com/r/devarovfwk1" target="_blank" class="btn">ПОДДЕРЖАТЬ В RUB</a>
+        </div>
+      </div>
+
+      <div class="donate-item" onclick="this.classList.toggle('active')">
+        <div class="donate-question">
+          <svg viewBox="0 0 3 2">
+            <rect width="3" height="2" fill="#0057b7"/>
+            <rect width="3" height="1" y="1" fill="#ffd700"/>
+          </svg>
+          Оплата UAH (Україна)
+        </div>
+        <div class="donate-answer">
+          <p style="margin-bottom: 12px;">Підтримка через Monobank. Найшвидший спосіб допомогти проекту прямо зараз.</p>
+          <a href="https://send.monobank.ua/ATvzoHF1sG" target="_blank" class="btn">ПЕРЕЙТИ ДО ОПЛАТИ</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="donate-card">
+      <h3 style="font-family: 'Unbounded'; font-size: 1rem;">Donation Hub</h3>
+      <p style="font-size: 0.8rem; color: rgba(255,255,255,0.3); margin-top: 10px;">
+        Для тех, кто хочет поддержать проект через глобальные сервисы.
+      </p>
+      <a href="https://www.donationalerts.com/r/devarovfwk1" target="_blank" class="btn">DONATIONALERTS</a>
+      <a href="#" class="btn" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); margin-top: 10px;">CRYPTO (SOON)</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

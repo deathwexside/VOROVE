@@ -1,0 +1,14 @@
+/* Запрет выделения текста */
+    body {
+      -webkit-user-select: none; /* Safari */
+      -ms-user-select: none;      /* IE 10+ */
+      user-select: none;         /* Стандарт */
+    }
+
+    /* Если хочешь, чтобы в поиске текст всё-таки можно было вводить */
+    input, textarea {
+      -webkit-user-select: text;
+      -ms-user-select: text;
+      user-select: text;
+    }
+	
