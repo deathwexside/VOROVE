@@ -3,16 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>VOROVE — Catalog Archive</title>
+  <title>VOROVE — Stealth Vision</title>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;900&family=Manrope:wght@200;500;800&display=swap" rel="stylesheet" />
   <style>
     :root {
       --dark: #050505;
       --v-prime: #6d28d9;
-      --glass: rgba(255, 255, 255, 0.03);
-      --border: rgba(255, 255, 255, 0.08);
-      --text-dim: rgba(255, 255, 255, 0.5);
-      --gold-gradient: linear-gradient(90deg, #ffd700, #ffae00, #ffe066, #ffae00, #ffd700);
+      --v-dim: rgba(109, 40, 217, 0.2);
+      --glass: rgba(255, 255, 255, 0.02);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,147 +19,209 @@
       font-family: 'Manrope', sans-serif;
       background: var(--dark);
       color: #fff;
-      line-height: 1.6;
+      overflow-x: hidden;
       background-image: 
-        radial-gradient(circle at 0% 0%, rgba(109, 40, 217, 0.1) 0%, transparent 35%),
-        radial-gradient(circle at 100% 100%, rgba(109, 40, 217, 0.05) 0%, transparent 35%);
-      background-attachment: fixed;
+        radial-gradient(circle at 20% 20%, rgba(109, 40, 217, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(109, 40, 217, 0.03) 0%, transparent 40%);
+    }
+
+	    /* Защита от копирования текста */
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: var(--dark);
+      color: #fff;
+      line-height: 1.6;
+      background-image: radial-gradient(circle at 90% 10%, rgba(109, 40, 217, 0.05) 0%, transparent 40%);
       -webkit-user-select: none;
+      -ms-user-select: none;
       user-select: none;
     }
-
-    /* Запрет перетаскивания картинок и ссылок */
-    img, a {
-      -webkit-user-drag: none;
-      -khtml-user-drag: none;
-      -moz-user-drag: none;
-      -o-user-drag: none;
-      user-drag: none;
-    }
-
+	
     header {
-      position: fixed; top: 30px; left: 50%; transform: translateX(-50%);
-      width: 90%; max-width: 1100px; padding: 12px 35px;
-      background: rgba(10, 10, 10, 0.7); backdrop-filter: blur(20px);
-      border: 1px solid var(--border); border-radius: 100px;
-      display: flex; justify-content: space-between; align-items: center; z-index: 1000;
+      position: fixed;
+      top: 30px; left: 50%;
+      transform: translateX(-50%);
+      width: 90%; max-width: 1100px;
+      padding: 12px 35px;
+      background: rgba(10, 10, 10, 0.7);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 100px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
     }
 
-    .logo { font-family: 'Unbounded'; font-weight: 900; font-size: 1.1rem; text-transform: uppercase; color: #fff; text-decoration: none; letter-spacing: 1px; }
-    .logo span { color: var(--v-prime); }
-    nav a { color: var(--text-dim); text-decoration: none; font-size: 0.7rem; font-weight: 800; margin-left: 25px; transition: 0.3s; text-transform: uppercase; }
-    nav a:hover, nav a.active { color: #fff; }
-
-    .container { max-width: 1200px; margin: 160px auto 100px; padding: 0 5%; }
-
-    .hero-section { margin-bottom: 50px; }
-    h1 { font-family: 'Unbounded'; font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 10px; }
-    h1 span { color: var(--v-prime); }
-
-    .catalog-controls { margin-bottom: 50px; }
-    .search-box {
-      width: 100%; max-width: 500px; background: var(--glass); border: 1px solid var(--border);
-      padding: 16px 25px; border-radius: 20px; color: #fff; font-family: 'Manrope';
-      outline: none; transition: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-      -webkit-user-select: text; user-select: text;
-    }
-    .search-box:focus { border-color: var(--v-prime); }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-    }
-
-    .pack-card {
-      --accent: var(--v-prime);
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: 32px;
-      padding: 12px;
-      transition: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-      position: relative;
-      display: flex; flex-direction: column;
-      min-height: 380px;
-      perspective: 1000px;
-    }
-
-    .pack-card:hover {
-      border-color: var(--accent);
-      background: rgba(255, 255, 255, 0.05);
-      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5), 0 0 20px -5px var(--accent);
-    }
-
-    /* Золотая обводка для сливов при наведении */
-    .pack-card.is-leak:hover {
-      border-color: #ffd700;
-      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5), 0 0 20px -5px #ffd700;
-    }
-
-    .pack-preview {
-      width: 100%; height: 200px; 
-      background: #0d0d0d; border-radius: 24px;
-      position: relative; overflow: hidden; border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-    }
-
-    .pack-preview img {
-      width: 100%; height: 100%; object-fit: cover;
-      opacity: 0.8; transition: 0.5s;
-    }
-    .pack-card:hover .pack-preview img { opacity: 1; transform: scale(1.05); }
-
-    .pack-badge {
-      position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.8);
-      backdrop-filter: blur(10px); padding: 6px 14px; border-radius: 12px;
-      font-size: 0.55rem; font-weight: 900; font-family: 'Unbounded';
-      border: 1px solid var(--border); z-index: 2; color: #fff;
+    .logo {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 900;
+      font-size: 1.1rem;
       text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #fff;
+      text-decoration: none;
+    }
+    .logo span { color: var(--v-prime); }
+
+    nav a {
+      color: rgba(255, 255, 255, 0.5); 
+      text-decoration: none;
+      font-size: 0.75rem; font-weight: 600;
+      margin-left: 25px;
+      transition: 0.3s; text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    nav a:hover { color: #fff; }
+
+    .hero {
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
     }
 
-    .badge-leak {
-      background: var(--gold-gradient);
-      background-size: 200% auto;
-      color: #000 !important;
-      border: none !important;
-      animation: shine 3s linear infinite;
+    .hero-tag {
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 6px 18px;
+      border-radius: 100px;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 25px;
+      color: rgba(255,255,255,0.4);
     }
 
-    @keyframes shine { to { background-position: 200% center; } }
-
-    .author-tag { display: flex; align-items: center; gap: 10px; margin: 20px 0 10px 10px; }
-    .author-avatar {
-      width: 26px; height: 26px; border-radius: 50%; 
-      border: 1.5px solid var(--accent); object-fit: cover; background: #111;
-    }
-    .author-name { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--text-dim); }
-
-    .pack-content { padding: 0 10px 85px 10px; }
-    .pack-title { font-family: 'Unbounded'; font-size: 1.1rem; line-height: 1.2; }
-
-    .pack-footer {
-      position: absolute; bottom: 12px; left: 12px; right: 12px;
-      padding: 16px 22px; background: rgba(255, 255, 255, 0.02);
-      backdrop-filter: blur(20px); border: 1px solid var(--border);
-      border-radius: 22px; display: flex; justify-content: space-between;
-      align-items: center; z-index: 3;
+    .hero h1 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(2.5rem, 10vw, 7rem);
+      line-height: 0.9;
+      margin-bottom: 40px;
+      font-weight: 900;
     }
 
-    .v-box { display: flex; flex-direction: column; }
-    .v-label { font-size: 0.55rem; text-transform: uppercase; color: rgba(255,255,255,0.2); font-weight: 800; }
-    .v-val { font-size: 0.7rem; color: #fff; font-weight: 700; }
-
-    .dl-btn {
-      padding: 10px 20px; background: #fff; color: #000;
-      border-radius: 12px; text-decoration: none; font-family: 'Unbounded';
-      font-size: 0.6rem; font-weight: 900; transition: 0.3s;
+    .outline-txt {
+      font-weight: 300;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,0.2);
     }
-    .dl-btn:hover { background: var(--accent); color: #fff; }
 
-    .pack-card.hidden { display: none; }
+    .main-btn {
+      padding: 18px 45px;
+      background: transparent;
+      color: #fff;
+      border: 1px solid var(--v-prime);
+      border-radius: 8px;
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 400;
+      font-size: 0.8rem;
+      text-decoration: none;
+      transition: 0.4s;
+      letter-spacing: 2px;
+    }
+    .main-btn:hover {
+      background: var(--v-prime);
+      box-shadow: 0 0 30px var(--v-dim);
+      transform: translateY(-3px);
+    }
 
-    @media (max-width: 1024px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
+    .grid-container {
+      max-width: 1100px;
+      margin: 0 auto 100px;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 15px;
+      padding: 0 5%;
+    }
+
+    .card {
+      background: var(--glass);
+      border: 1px solid rgba(255,255,255,0.03);
+      border-radius: 20px;
+      padding: 35px;
+      transition: 0.4s;
+      display: flex;
+      flex-direction: column;
+      min-height: 250px;
+    }
+
+    .card:hover {
+      border-color: rgba(109, 40, 217, 0.4);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .card h2 { 
+      font-family: 'Unbounded', sans-serif; 
+      font-size: 1.2rem;
+      margin-bottom: 15px; 
+      font-weight: 900;
+    }
+
+    .card p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.6;
+    }
+
+    .card.accent {
+      position: relative;
+      border-color: rgba(109, 40, 217, 0.3);
+      background: linear-gradient(145deg, rgba(109, 40, 217, 0.05), transparent);
+      justify-content: space-between;
+    }
+
+    .card-link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .discord-icon {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      width: 40px;
+      height: 40px;
+      fill: var(--v-prime);
+      opacity: 0.5;
+      transition: 0.4s;
+    }
+
+    .card.accent:hover .discord-icon {
+      opacity: 1;
+      transform: scale(1.1) rotate(-10deg);
+      filter: drop-shadow(0 0 10px var(--v-prime));
+    }
+
+    .status-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #4ade80;
+      margin-top: 20px;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      background: #4ade80;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #4ade80;
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    @media (max-width: 768px) {
+      .grid-container { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -169,186 +229,40 @@
 <header>
   <a href="index.html" class="logo">VOR<span>OVE</span></a>
   <nav>
-    <a href="catalog.html" class="active">Каталог</a>
+    <a href="catalog.html">Каталог</a>
     <a href="donate.html">Донат</a>
     <a href="faq.html">FAQ</a>
   </nav>
 </header>
 
-<div class="container">
-  <div class="hero-section">
-    <h1>АРХИВ ПАКОВ<span>.</span></h1>
-    <p>Витрина лучших решений для твоего PVP.</p>
+<main class="hero">
+  <div class="hero-tag">Zero-Cost Premium</div>
+  <h1>VOROVE<br><span class="outline-txt"></span></h1>
+  <a href="catalog.html" class="main-btn">СКАЧАТЬ ПАКИ</a>
+</main>
+
+<section class="grid-container">
+  <div class="card">
+    <h2>Кто мы?</h2>
+    <p>Мы — команда VOROVE. Мы верим, что визуальное совершенство должно быть доступно каждому. Мы находим, тестируем и предоставляем эксклюзивные ресурсы топовых медиа-гигантов в свободный доступ. Без границ. Без оплаты.</p>
   </div>
 
-  <div class="catalog-controls">
-    <input type="text" id="searchInput" class="search-box" placeholder="Найти пак или автора...">
-  </div>
-
-  <div class="grid" id="packGrid">
-    
-    <div class="pack-card" style="--accent: #0080ff;">
-      <div class="pack-badge">В общем доступе</div>
-      <div class="pack-preview"><img src="img/zettad_preview.jpg" alt="Wonders Venom"></div>
-      <div class="pack-content">
-        <div class="author-tag">
-          <img src="avatar/zettad1337.png" class="author-avatar" alt="zettad1337">
-          <span class="author-name">zettad1337</span>
-        </div>
-        <h2 class="pack-title">WONDERS VENOM STYLE</h2>
+  <a href="http://dsc.gg/VOROVE" class="card-link" target="_blank">
+    <div class="card accent">
+      <svg class="discord-icon" viewBox="0 0 24 24">
+        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.076.076 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.086 2.157 2.419c0 1.334-.947 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.086 2.157 2.419c0 1.334-.946 2.419-2.157 2.419z"/>
+      </svg>
+      <div>
+        <h2>Join Discord</h2>
+        <p>Станьте частью закрытого комьюнити VOROVE. Получайте уведомления о новых сливах и общайтесь с командой.</p>
       </div>
-      <div class="pack-footer">
-        <div class="v-box"><span class="v-label">Версия</span><span class="v-val">1.16.5+</span></div>
-        <a href="#" class="dl-btn">DOWNLOAD</a>
+      <div class="status-tag">
+        <div class="dot"></div>
+        Community Online
       </div>
     </div>
-
-    <div class="pack-card is-leak" style="--accent: #8b5cf6;">
-      <div class="pack-badge badge-leak">Наш слив</div>
-      <div class="pack-preview"><img src="img/nezer_preview.jpg" alt="Nezer"></div>
-      <div class="pack-content">
-        <div class="author-tag">
-          <img src="avatar/nether play.png" class="author-avatar" alt="NezerPlay">
-          <span class="author-name">Nether Play</span>
-        </div>
-        <h2 class="pack-title">Premium V3</h2>
-      </div>
-      <div class="pack-footer">
-        <div class="v-box"><span class="v-label">Версия</span><span class="v-val">1.16.5+</span></div>
-        <a href="#" class="dl-btn">DOWNLOAD</a>
-      </div>
-    </div>
-
-    <div class="pack-card" style="--accent: #00d4ff;">
-      <div class="pack-badge">В общем доступе</div>
-      <div class="pack-preview"><img src="img/depression_preview.jpg" alt="Depression"></div>
-      <div class="pack-content">
-        <div class="author-tag">
-          <img src="avatar/bro9i.png" class="author-avatar" alt="bro9i">
-          <span class="author-name">bro9i</span>
-        </div>
-        <h2 class="pack-title">Depression Pack</h2>
-      </div>
-      <div class="pack-footer">
-        <div class="v-box"><span class="v-label">Версия</span><span class="v-val">1.16.5+</span></div>
-        <a href="#" class="dl-btn">DOWNLOAD</a>
-      </div>
-    </div>
-
-    <div class="pack-card" style="--accent: #2563eb;">
-      <div class="pack-badge">В общем доступе</div>
-      <div class="pack-preview"><img src="img/riker_preview.jpg" alt="Riker"></div>
-      <div class="pack-content">
-        <div class="author-tag">
-          <img src="avatar/riker.png" class="author-avatar" alt="Riker">
-          <span class="author-name">Riker</span>
-        </div>
-        <h2 class="pack-title">Oceanic Edit</h2>
-      </div>
-      <div class="pack-footer">
-        <div class="v-box"><span class="v-label">Версия</span><span class="v-val">1.16.5+</span></div>
-        <a href="#" class="dl-btn">DOWNLOAD</a>
-      </div>
-    </div>
-
-    <div class="pack-card" style="--accent: #ff0000;">
-      <div class="pack-badge">В общем доступе</div>
-      <div class="pack-preview"><img src="img/fluger_preview.jpg" alt="Fluger"></div>
-      <div class="pack-content">
-        <div class="author-tag">
-          <img src="avatar/flugernew.png" class="author-avatar" alt="FlugerNew">
-          <span class="author-name">FlugerNew</span>
-        </div>
-        <h2 class="pack-title">Red Elite Edit</h2>
-      </div>
-      <div class="pack-footer">
-        <div class="v-box"><span class="v-label">Версия</span><span class="v-val">1.16.5+</span></div>
-        <a href="#" class="dl-btn">DOWNLOAD</a>
-      </div>
-    </div>
-
-    <div class="pack-card" style="--accent: #991b1b;">
-      <div class="pack-badge">В общем доступе</div>
-      <div class="pack-preview"><img src="img/sw0mp_preview.jpg" alt="Sw0mp"></div>
-      <div class="pack-content">
-        <div class="author-tag">
-          <img src="avatar/sw0mp.png" class="author-avatar" alt="Sw0mp">
-          <span class="author-name">Sw0mp</span>
-        </div>
-        <h2 class="pack-title">Blood Swamp</h2>
-      </div>
-      <div class="pack-footer">
-        <div class="v-box"><span class="v-label">Версия</span><span class="v-val">1.16.5+</span></div>
-        <a href="#" class="dl-btn">DOWNLOAD</a>
-      </div>
-    </div>
-
-    <div class="pack-card" style="--accent: #ffffff;">
-      <div class="pack-badge">В общем доступе</div>
-      <div class="pack-preview"><img src="img/bravo_preview.jpg" alt="Bravo"></div>
-      <div class="pack-content">
-        <div class="author-tag">
-          <img src="avatar/clan bravo.png" class="author-avatar" alt="Clan Bravo">
-          <span class="author-name">Clan Bravo</span>
-        </div>
-        <h2 class="pack-title">Bravo Legacy</h2>
-      </div>
-      <div class="pack-footer">
-        <div class="v-box"><span class="v-label">Версия</span><span class="v-val">1.16.5+</span></div>
-        <a href="#" class="dl-btn">DOWNLOAD</a>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<script>
-  // Блокировка перетаскивания (Drag & Drop)
-  document.addEventListener('dragstart', (e) => {
-    if (e.target.tagName === 'IMG' || e.target.tagName === 'A') {
-      e.preventDefault();
-    }
-  });
-
-  // Поиск по каталогу
-  const searchInput = document.getElementById('searchInput');
-  const packCards = document.querySelectorAll('.pack-card');
-
-  searchInput.addEventListener('input', () => {
-    const filter = searchInput.value.toLowerCase();
-    packCards.forEach(card => {
-      const title = card.querySelector('.pack-title').innerText.toLowerCase();
-      const author = card.querySelector('.author-name').innerText.toLowerCase();
-      if (title.includes(filter) || author.includes(filter)) {
-        card.classList.remove('hidden');
-      } else {
-        card.classList.add('hidden');
-      }
-    });
-  });
-
-  // Tilt эффект (наклон карточек)
-  packCards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const rotateX = (y - rect.height / 2) / 20;
-      const rotateY = (rect.width / 2 - x) / 20;
-      card.style.transform = `perspective(1000px) translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = `perspective(1000px) translateY(0) rotateX(0) rotateY(0)`;
-    });
-  });
-
-  // Защита от контекстного меню и горячих клавиш
-  document.addEventListener('contextmenu', e => e.preventDefault());
-  document.addEventListener('keydown', e => {
-    if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 85 || e.keyCode === 83)) return false;
-    if (e.keyCode === 123) return false;
-  });
-</script>
+  </a>
+</section>
 
 </body>
 </html>
